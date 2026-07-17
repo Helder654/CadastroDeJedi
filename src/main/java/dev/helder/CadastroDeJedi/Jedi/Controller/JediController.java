@@ -1,4 +1,4 @@
-package dev.helder.CadastroDeJedi;
+package dev.helder.CadastroDeJedi.Jedi.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
