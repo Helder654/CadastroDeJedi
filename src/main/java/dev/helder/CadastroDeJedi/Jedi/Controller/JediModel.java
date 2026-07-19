@@ -26,10 +26,14 @@ public class JediModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
+
+    @Column(name = "id")
     private long id;
     
+    @Column(name = "nome")
     private String nome;
     
+    @Column(name = "idade")
     private int idade;
     
     @Column(unique = true)
