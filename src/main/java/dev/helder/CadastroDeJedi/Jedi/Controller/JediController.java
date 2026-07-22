@@ -51,8 +51,8 @@ public class JediController {
     }
 
     //Deletar jedi(DELETE)
-    @DeleteMapping("/deleteID")
-    public String deletarJediPorId(){
-        return"jedi deletado por id";
+    @DeleteMapping("/delete/{id}")
+    public void deletarJediPorId(@PathVariable Long id){
+        jediService.deletarJediPorId(id);
     }
 }
