@@ -35,4 +35,13 @@ public class JediService {
     public void deletarJediPorId(Long id){
         jediRepository.deleteById(id);
     }
+
+    //atualizar jedi
+    public JediModel atualizarJedi(Long id, JediModel jediAtualizado){
+        if(jediRepository.existsById(id)){
+            jediAtualizado.setId(id);
+            return jediRepository.save(jediAtualizado);
+        }
+        return null;
+    }
 }

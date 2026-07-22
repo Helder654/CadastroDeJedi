@@ -44,10 +44,11 @@ public class JediController {
     public JediModel mostrarOsJediPorId(@PathVariable Long id){
         return jediService.listarJediPorId(id);
     }
+
     //Alterar dados do jedi(UPDATE)
-    @PutMapping("/alterarID")
-    public String alterarJediPorId(){
-        return"jedi alterado";
+    @PutMapping("/alterar/{id}")
+    public JediModel alterarJediPorId(@PathVariable Long id, @RequestBody JediModel jediAtualizado){
+        return jediService.atualizarJedi(id, jediAtualizado);
     }
 
     //Deletar jedi(DELETE)
