@@ -1,7 +1,5 @@
 package dev.helder.CadastroDeJedi.Jedi.Controller;
 
-import java.util.List;
-
 import dev.helder.CadastroDeJedi.Missoes.MissoesModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

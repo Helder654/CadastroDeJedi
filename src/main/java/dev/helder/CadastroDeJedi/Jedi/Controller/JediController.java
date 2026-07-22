@@ -1,8 +1,9 @@
 package dev.helder.CadastroDeJedi.Jedi.Controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/jedi")
 public class JediController {
+
+    private JediService jediService;
+
+    public JediController(JediService jediService) {
+        this.jediService = jediService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
@@ -26,14 +33,14 @@ public class JediController {
 
     //Mostrar todos os jedi(READ)
     @GetMapping("/listar")
-    public String mostrarTodosOsJedi(){
-        return "jedi listados com sucesso";
+    public List<JediModel> mostrarTodosOsJedi(){
+        return jediService.listarJedi();
     }
 
     //Mostrar jedi por id(READ)
     @GetMapping("/listarID")
-    public String mostrarTodosOsJediPorId(){
-        return "mostrar jedi por id";
+    public List<JediModel> mostrarTodosOsJediPorId(){
+        return jediService.listarJediPorId();
     }
     //Alterar dados do jedi(UPDATE)
     @PutMapping("alterarID")

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //LOCALHOST:8080/DELETAR
 @RestController
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class MissoesController {
 
     @GetMapping("/listar")
@@ -29,6 +29,6 @@ public class MissoesController {
 
     @DeleteMapping("/delete")
     public String deletarMissao(){
-        return"missao deletada";
+        return "missao deletada";
     }
 }
