@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/jedi")
 public class JediController {
 
     @GetMapping("/boasvindas")
@@ -21,17 +21,17 @@ public class JediController {
     //Adicionar jedi(CREATE)
     @PostMapping("/criar")
     public String criarJedi(){
-        return "ninja criado";
+        return "ninja criado com sucesso";
     }
 
     //Mostrar todos os jedi(READ)
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String mostrarTodosOsJedi(){
-        return "mostrar jedi";
+        return "jedi listados com sucesso";
     }
 
     //Mostrar jedi por id(READ)
-    @GetMapping("/todosID")
+    @GetMapping("/listarID")
     public String mostrarTodosOsJediPorId(){
         return "mostrar jedi por id";
     }
