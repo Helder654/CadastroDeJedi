@@ -2,6 +2,8 @@ package dev.helder.CadastroDeJedi.Missoes;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import dev.helder.CadastroDeJedi.Jedi.Controller.JediModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,6 +37,7 @@ public class MissoesModel {
     
     //@OneToMany uma missão pode ter varios ninjas
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore
     private List<JediModel> jedi;
 }
     
