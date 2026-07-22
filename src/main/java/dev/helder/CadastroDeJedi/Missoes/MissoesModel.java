@@ -27,13 +27,13 @@ public class MissoesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "id")
-    private long id;
+    private Long id;
     
     @Column(name = "nome_missao")
     private String nome;
     
     @Column(unique = true)
-    private char dificuldade;
+    private Character dificuldade;
     
     //@OneToMany uma missão pode ter varios ninjas
     @OneToMany(mappedBy = "missoes")
