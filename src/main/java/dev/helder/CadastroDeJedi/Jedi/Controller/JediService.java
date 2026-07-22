@@ -26,5 +26,8 @@ public class JediService {
     Optional<JediModel> jediPorId = jediRepository.findById(id);
     return jediPorId.orElse(null);
 }
-    
+    //criar um novo jedi
+    public JediModel criarJedi(JediModel jedi){
+        return jediRepository.save(jedi);
+    }
 }

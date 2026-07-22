@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,8 +29,8 @@ public class JediController {
     //Mock de endpoints
     //Adicionar jedi(CREATE)
     @PostMapping("/criar")
-    public String criarJedi(){
-        return "ninja criado com sucesso";
+    public JediModel criarJedi(@RequestBody JediModel jedi){
+        return jediService.criarJedi(jedi);
     }
 
     //Mostrar todos os jedi(READ)
