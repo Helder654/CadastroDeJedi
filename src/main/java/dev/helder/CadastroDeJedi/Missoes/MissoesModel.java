@@ -32,7 +32,7 @@ public class MissoesModel {
     @Column(name = "nome_missao")
     private String nome;
     
-    @Column(unique = true)
+    @Column
     private Character dificuldade;
     
     //@OneToMany uma missão pode ter varios ninjas

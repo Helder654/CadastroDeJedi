@@ -18,9 +18,14 @@ public class MissoesService {
         return missoesRepository.findAll();
     }
 
-    // criar uma nova missao
+    //Criar uma nova missao
     public MissoesModel criarMissao(MissoesModel missao){
         return missoesRepository.save(missao);
+    }
+
+    //Deletar uma missao pelo id
+    public void deletarMissaoPorId(Long id){
+        missoesRepository.deleteById(id);
     }
 
 }
