@@ -1,5 +1,7 @@
 package dev.helder.CadastroDeJedi.Missoes;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/missoes")
 public class MissoesController {
 
+    private MissoesService missoesService;
+    
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
+
     @GetMapping("/listar")
-    public String listarMissao(){
-        return "missao listadas com sucesso";
+    public List<MissoesModel> listarMissao(){
+        return missoesService.listarMissoes();
     }
     
     @PostMapping("/criar")
