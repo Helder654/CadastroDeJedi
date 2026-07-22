@@ -1,6 +1,7 @@
 package dev.helder.CadastroDeJedi.Missoes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,12 @@ public class MissoesService {
     //Listar todas as missoes
     public List<MissoesModel> listarMissoes(){
         return missoesRepository.findAll();
+    }
+
+    //Listar missão por id
+    public MissoesModel listarMissoesPorId(Long id) {
+    Optional<MissoesModel> MissaoPorId = missoesRepository.findById(id);
+    return MissaoPorId.orElse(null);
     }
 
     //Criar uma nova missao
