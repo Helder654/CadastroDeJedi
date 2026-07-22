@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +39,12 @@ public class JediController {
     }
 
     //Mostrar jedi por id(READ)
-    @GetMapping("/listarID")
-    public List<JediModel> mostrarTodosOsJediPorId(){
-        return jediService.listarJediPorId();
+    @GetMapping("/listar/{id}")
+    public JediModel mostrarOsJediPorId(@PathVariable Long id){
+        return jediService.listarJediPorId(id);
     }
     //Alterar dados do jedi(UPDATE)
-    @PutMapping("alterarID")
+    @PutMapping("/alterarID")
     public String alterarJediPorId(){
         return"jedi alterado";
     }

@@ -1,8 +1,9 @@
 package dev.helder.CadastroDeJedi.Jedi.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,8 +22,9 @@ public class JediService {
     }
 
     //listar jedi em ordem de id
-    public List<JediModel> listarJediPorId() {
-    return jediRepository.findAll(Sort.by("id"));
+    public JediModel listarJediPorId(long id) {
+    Optional<JediModel> jediPorId = jediRepository.findById(id);
+    return jediPorId.orElse(null);
 }
     
 }
