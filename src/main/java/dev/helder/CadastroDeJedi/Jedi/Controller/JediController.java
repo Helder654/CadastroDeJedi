@@ -35,19 +35,19 @@ public class JediController {
 
     //Mostrar todos os jedi(READ)
     @GetMapping("/listar")
-    public List<JediModel> mostrarTodosOsJedi(){
+    public List<JediDTO> mostrarTodosOsJedi(){
         return jediService.listarJedi();
     }
 
     //Mostrar jedi por id(READ)
     @GetMapping("/listar/{id}")
-    public JediModel mostrarOsJediPorId(@PathVariable Long id){
+    public JediDTO mostrarOsJediPorId(@PathVariable Long id){
         return jediService.listarJediPorId(id);
     }
 
     //Alterar dados do jedi(UPDATE)
     @PutMapping("/alterar/{id}")
-    public JediModel alterarJediPorId(@PathVariable Long id, @RequestBody JediModel jediAtualizado){
+    public JediDTO alterarJediPorId(@PathVariable Long id, @RequestBody JediDTO jediAtualizado){
         return jediService.atualizarJedi(id, jediAtualizado);
     }
 

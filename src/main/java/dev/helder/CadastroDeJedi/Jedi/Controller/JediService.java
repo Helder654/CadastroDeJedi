@@ -2,7 +2,7 @@ package dev.helder.CadastroDeJedi.Jedi.Controller;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,17 @@ public class JediService {
     }
 
     //listar todos meus jedi
-    public List<JediModel> listarJedi(){
-        return jediRepository.findAll();
-    }
+    public List<JediDTO> listarJedi(){
+        List<JediModel> jedi = jediRepository.findAll();
+        return jedi.stream()
+        .map(jediMapper::map)
+        .collect(Collectors.toList());
+        }
 
     //listar jedi em ordem de id
-    public JediModel listarJediPorId(Long id) {
+    public JediDTO listarJediPorId(Long id) {
     Optional<JediModel> jediPorId = jediRepository.findById(id);
-    return jediPorId.orElse(null);
+    return jediPorId.map(jediMapper::map).orElse(null);
 }
     //criar um novo jedi
     public JediDTO criarJedi(JediDTO jediDTO){
@@ -40,10 +43,13 @@ public class JediService {
     }
 
     //atualizar jedi
-    public JediModel atualizarJedi(Long id, JediModel jediAtualizado){
-        if(jediRepository.existsById(id)){
-            jediAtualizado.setId(id);
-            return jediRepository.save(jediAtualizado);
+    public JediDTO atualizarJedi(Long id, JediDTO jediDTO){
+        Optional<JediModel> jediExistente = jediRepository.findById(id);
+        if(jediExistente.isPresent()){
+            JediModel jediAtulizado = jediMapper.map(jediDTO);
+            jediAtulizado.setId(id);
+            JediModel jediSalvo = jediRepository.save(jediAtulizado);
+            return jediMapper.map(jediSalvo);
         }
         return null;
     }
