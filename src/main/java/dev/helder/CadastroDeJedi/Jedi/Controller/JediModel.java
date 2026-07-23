@@ -32,8 +32,11 @@ public class JediModel {
     private String nome;
     
     @Column(name = "idade")
-    private int idade;
+    private Integer idade;
     
+    @Column(name = "rank")
+    private String rank;
+
     @Column(unique = true)
     private String email;
     
