@@ -29,7 +29,7 @@ public class JediController {
     //Mock de endpoints
     //Adicionar jedi(CREATE)
     @PostMapping("/criar")
-    public JediModel criarJedi(@RequestBody JediModel jedi){
+    public JediDTO criarJedi(@RequestBody JediDTO jedi){
         return jediService.criarJedi(jedi);
     }
 

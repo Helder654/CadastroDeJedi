@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class JediService {
 
-    
     private JediRepository jediRepository;
+    private JediMapper jediMapper;
 
-    public JediService(JediRepository jediRepository) {
+    public JediService(JediRepository jediRepository, JediMapper jediMapper) {
         this.jediRepository = jediRepository;
+        this.jediMapper = jediMapper;
     }
 
     //listar todos meus jedi
@@ -27,8 +28,10 @@ public class JediService {
     return jediPorId.orElse(null);
 }
     //criar um novo jedi
-    public JediModel criarJedi(JediModel jedi){
-        return jediRepository.save(jedi);
+    public JediDTO criarJedi(JediDTO jediDTO){
+        JediModel jedi = jediMapper.map(jediDTO);
+        jedi = jediRepository.save(jedi);
+        return jediMapper.map(jedi);
     }
 
     //deletar um jedi por id - tem que ser um metodo void
