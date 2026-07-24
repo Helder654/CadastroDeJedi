@@ -2,6 +2,7 @@ package dev.helder.CadastroDeJedi.Missoes;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -9,30 +10,53 @@ import org.springframework.stereotype.Service;
 public class MissoesService {
 
     private MissoesRepository missoesRepository;
+    private MissoesMapper missoesMapper;
 
-    public MissoesService(MissoesRepository missoesRepository) {
+    public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper) {
         this.missoesRepository = missoesRepository;
+        this.missoesMapper = missoesMapper;
     }
 
-    //Listar todas as missoes
-    public List<MissoesModel> listarMissoes(){
-        return missoesRepository.findAll();
+    // listar todas as minhas missões
+    public List<MissoesDTO> listarMissoes() {
+        List<MissoesModel> missoes = missoesRepository.findAll();
+        return missoes.stream()
+                .map(missoesMapper::map)
+                .collect(Collectors.toList());
     }
 
-    //Listar missão por id
-    public MissoesModel listarMissoesPorId(Long id) {
-    Optional<MissoesModel> MissaoPorId = missoesRepository.findById(id);
-    return MissaoPorId.orElse(null);
+    // listar missao em ordem de id
+    public MissoesDTO listarMissoesPorId(Long id) {
+        Optional<MissoesModel> missoesPorId = missoesRepository.findById(id);
+        return missoesPorId.map(missoesMapper::map).orElse(null);
     }
 
-    //Criar uma nova missao
-    public MissoesModel criarMissao(MissoesModel missao){
-        return missoesRepository.save(missao);
+    // Criar uma nova missao
+    public MissoesDTO criarMissao(MissoesDTO missaoDTO) {
+        MissoesModel missao = missoesMapper.map(missaoDTO);
+        missao = missoesRepository.save(missao);
+        return missoesMapper.map(missao);
     }
 
-    //Deletar uma missao pelo id
-    public void deletarMissaoPorId(Long id){
+    // Deletar uma missao pelo id
+    public void deletarMissaoPorId(Long id) {
         missoesRepository.deleteById(id);
     }
 
+    // atualizar missão
+    public MissoesDTO atualizarMissao(Long id, MissoesDTO missoesDTO) {
+        Optional<MissoesModel> missaoExistente = missoesRepository.findById(id);
+
+        if (missaoExistente.isPresent()) {
+            MissoesModel missaoAtualizada = missoesMapper.map(missoesDTO);
+            missaoAtualizada.setId(id);
+
+            MissoesModel missaoSalva = missoesRepository.save(missaoAtualizada);
+
+            return missoesMapper.map(missaoSalva);
+        }
+
+        return null;
+
+    }
 }
