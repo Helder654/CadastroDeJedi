@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 //Entity transforma a classe em uma entidade para o banco de dados
 //JPA = Java Persistant API
 @Entity
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "missoes")
 public class JediModel {
     
     @Id
@@ -45,7 +47,3 @@ public class JediModel {
     @JoinColumn(name = "missoes_id") //foreing key
     private MissoesModel missoes;
 }
-
-
-    
-    
