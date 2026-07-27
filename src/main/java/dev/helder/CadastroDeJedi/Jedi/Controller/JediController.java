@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/jedi")
 public class JediController {
 
-    private JediService jediService;
+    private final JediService jediService;
 
     public JediController(JediService jediService) {
         this.jediService = jediService;
