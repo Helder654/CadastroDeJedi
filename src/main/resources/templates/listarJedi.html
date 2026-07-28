@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Jedi</title>
+</head>
+<body>
+ <h1>Lista de Jedi</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Email</th>
+                <th>Rank</th>
+                <th>Missoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "jedi: ${jedi}">
+                <td id th:text="${jedi.id}"></td>
+                <td nome th:text="${jedi.nome}"></td>
+                <td idade th:text="${jedi.idade}"></td>
+                <td emai th:text="${jedi.email}"></td>
+                <td rank th:text="${jedi.rank}"></td>
+                <td missoes th:text="${jedi.missoes}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
