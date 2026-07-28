@@ -14,6 +14,7 @@ public class JediMapper {
         jediModel.setIdade(jediDTO.getIdade());
         jediModel.setMissoes(jediDTO.getMissoes());
         jediModel.setRank(jediDTO.getRank());
+        jediModel.setImagemUrl(jediDTO.getImagemUrl());
 
         return jediModel;
     }
@@ -27,6 +28,7 @@ public class JediMapper {
         jediDTO.setMissoes(jediModel.getMissoes());
         jediDTO.setNome(jediModel.getNome());
         jediDTO.setRank(jediModel.getRank());
+        jediDTO.setImagemUrl(jediModel.getImagemUrl());
 
         return jediDTO;
 
