@@ -16,6 +16,7 @@ public class JediDTO {
     private String nome;
     private Integer idade;
     private String email;
+    private String imagemUrl;
     private MissoesModel missoes;
     private String rank;
 }

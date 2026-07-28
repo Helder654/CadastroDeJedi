@@ -39,6 +39,9 @@ public class JediModel {
     @Column(name = "rank")
     private String rank;
 
+    @Column(name = "imagem_url")
+    private String imagemUrl;
+
     @Column(unique = true)
     private String email;
     
