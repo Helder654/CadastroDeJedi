@@ -227,6 +227,7 @@
                 <input
                     type="text"
                     id="nome"
+                    autocomplete="off"
                     th:field="*{nome}"
                     required>
             </div>
@@ -237,6 +238,7 @@
                 <input
                     type="email"
                     id="email"
+                    autocomplete="off"
                     th:field="*{email}"
                     required>
             </div>
@@ -269,6 +271,31 @@
                     type="url"
                     id="imagemUrl"
                     th:field="*{imagemUrl}">
+            </div>
+
+            <div class="campo">
+
+                <label for="missao">
+                    Missão
+                </label>
+
+                <select
+                    id="missao"
+                    th:field="*{missoes.id}"
+                    required>
+
+                    <option value="">
+                        Selecione uma missão
+                    </option>
+
+                    <option
+                        th:each="missao : ${missoes}"
+                        th:value="${missao.id}"
+                        th:text="|ID ${missao.id} - ${missao.nome} - Dificuldade ${missao.dificuldade}|">
+                    </option>
+
+                </select>
+
             </div>
 
             <button type="submit" class="botao-cadastrar">

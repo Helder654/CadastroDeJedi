@@ -2,6 +2,7 @@ package dev.helder.CadastroDeJedi.Jedi.Controller;
 
 import java.util.List;
 
+import dev.helder.CadastroDeJedi.Missoes.MissoesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class JediControllerUi {
 
     private final JediService jediService;
-
-    public JediControllerUi(JediService jediService) {
-        this.jediService = jediService;
-    }
+    private final MissoesService missoesService;
     
+    public JediControllerUi(JediService jediService, MissoesService missoesService) {
+        this.jediService = jediService;
+        this.missoesService = missoesService;
+    }
+
     @GetMapping("/listar")
     public String mostrarTodosOsJedi(Model model){
         List<JediDTO> jediLista = jediService.listarJedi();  
@@ -50,10 +53,17 @@ public class JediControllerUi {
     }
 
         @GetMapping("/adicionar")
-    public String mostrarFormularioAdicionarJedi(Model model) {
-        model.addAttribute("jedi", new JediDTO());
-        return "adicionarJedi";
-    }
+public String mostrarFormularioAdicionarJedi(Model model) {
+
+    model.addAttribute("jedi", new JediDTO());
+
+    model.addAttribute(
+            "missoes",
+            missoesService.listarMissoes()
+    );
+
+    return "adicionarJedi";
+}
 
     @PostMapping("/salvar")
     public String salvarNinja(@ModelAttribute JediDTO ninja, RedirectAttributes redirectAttributes) {
@@ -62,11 +72,12 @@ public class JediControllerUi {
         return "redirect:/jedi/ui/listar";
     }
 
-    @GetMapping("/alterar/{id}")
+   @GetMapping("/alterar/{id}")
 public String abrirFormularioAlterar(
         @PathVariable Long id,
         Model model
 ) {
+
     JediDTO jediDTO = jediService.listarJediPorId(id);
 
     if (jediDTO == null) {
@@ -74,6 +85,11 @@ public String abrirFormularioAlterar(
     }
 
     model.addAttribute("jedi", jediDTO);
+
+    model.addAttribute(
+            "missoes",
+            missoesService.listarMissoes()
+    );
 
     return "alterarJedi";
 }

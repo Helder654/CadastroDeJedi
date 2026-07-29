@@ -223,7 +223,8 @@
             <form
                 th:action="@{/jedi/ui/salvar}"
                 th:object="${jedi}"
-                method="post">
+                method="post"
+                autocomplete="off">
 
                 <div class="campo">
                     <label for="nome">Nome</label>
@@ -232,7 +233,7 @@
                         type="text"
                         id="nome"
                         th:field="*{nome}"
-                        placeholder="Ex.: Obi-Wan Kenobi"
+                        autocomplete="off"
                         required>
                 </div>
 
@@ -243,7 +244,7 @@
                         type="email"
                         id="email"
                         th:field="*{email}"
-                        placeholder="Ex.: obiwan@jedi.com"
+                        autocomplete="off"
                         required>
                 </div>
 
@@ -254,7 +255,7 @@
                         type="number"
                         id="idade"
                         th:field="*{idade}"
-                        placeholder="Ex.: 38"
+                        autocomplete="off"
                         min="0"
                         required>
                 </div>
@@ -266,7 +267,7 @@
                         type="text"
                         id="rank"
                         th:field="*{rank}"
-                        placeholder="Ex.: Mestre Jedi"
+                        autocomplete="off"
                         required>
                 </div>
 
@@ -277,11 +278,42 @@
                         type="url"
                         id="imagemUrl"
                         th:field="*{imagemUrl}"
+                        autocomplete="off"
                         placeholder="https://site.com/imagem-do-jedi.jpg">
 
                     <span class="texto-ajuda">
                         Esse campo é opcional. Use o endereço direto de uma imagem.
                     </span>
+                </div>
+
+                <div class="campo">
+
+                    <label for="missao">
+                        Missão
+                    </label>
+
+                    <select
+                        id="missao"
+                        th:field="*{missoes.id}"
+                        autocomplete="off"
+                        required>
+
+                        <option value="">
+                            Selecione uma missão
+                        </option>
+
+                        <option
+                            th:each="missao : ${missoes}"
+                            th:value="${missao.id}"
+                            th:text="|ID ${missao.id} - ${missao.nome} - Dificuldade ${missao.dificuldade}|">
+                        </option>
+
+                    </select>
+
+                    <span class="texto-ajuda">
+                        Selecione a missão que será atribuída ao Jedi.
+                    </span>
+
                 </div>
 
                 <button type="submit" class="botao-cadastrar">
